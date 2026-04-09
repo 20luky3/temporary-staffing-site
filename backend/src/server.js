@@ -5,22 +5,28 @@
  * NOTE: DO NOT CHANGE THIS FILE
  */
 
-const port = (() => {
-    const args = process.argv;
+// const port = (() => {
+//     const args = process.argv;
 
-    if (args.length !== 3) {
-        console.error(`usage: node src/server.js port`);
-        process.exit(1);
-    }
+//     if (args.length !== 3) {
+//         console.error(`usage: node src/server.js port`);
+//         process.exit(1);
+//     }
 
-    const num = parseInt(args[2], 10);
-    if (isNaN(num)) {
-        console.error("error: argument must be an integer.");
-        process.exit(1);
-    }
+//     const num = parseInt(args[2], 10);
+//     if (isNaN(num)) {
+//         console.error("error: argument must be an integer.");
+//         process.exit(1);
+//     }
 
-    return num;
-})();
+//     return num;
+// })();
+
+
+const dotenv = require("dotenv");
+dotenv.config();
+
+const port = process.env.PORT || 3000;
 
 const http = require('http');
 const { create_app } = require('./app');
