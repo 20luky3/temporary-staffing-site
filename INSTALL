@@ -1,6 +1,36 @@
-# This text file should explain how to deploy your website.
+### DEVELOPMENT ###
 
-# You should write detailed description on:
+# Frontend - in command prompt, navigate into the /frontend folder to run these commands.
+# 1. Install the required frontend packages: npm install
+# 2. Run the frontend: npm start
+# Click the link to open the frontend on your web browser.
 
-# 1. All the packages you need to install
-# 2. How to configure various servers (e.g., Nginx, Apache, etc)
+# Backend - in command prompt, navigate into the /backend folder to run these commands.
+# 1. Install the required backend packages: npm install
+# 2. Set up prisma: make migrate
+# 3. (Optional) Seed the database with pre-populated data: make seed
+# 4. Run the backend server: npm run start
+
+### DEPLOYMENT ###
+# These steps describe how to deploy the application Railway, a PaaS.
+# 1. Create a GitHub repository containing this code.
+# 2. Set up a Railway account by signing in with GitHub. Ensure that Railway is granted the necessary permissions to access your repostories.
+# 3. On the Railway dashboard, create a new project and link it to the repository.
+
+# 4. Create the frontend service by linking the GitHub repo, and changing the following settings:
+#   Root directory: frontend/
+#   Build command: npm run build
+#   Start command: npx serve -s dist
+# 5. Deploy the frontend.
+# 6. After deployment, go to the settings tab. Under "Networking", generate a domain and set the port to be 8080.
+
+# 7. Create the backend service by adding the GitHub repo, and changing the following settings:
+#   Root directory: backend/
+#   Start command: npm run start
+# 8. In the variables tab, create a variable called FRONTEND_URL with the URL of the frontend domain that you generated earlier.
+# 9. Deploy the backend.
+# 10. After deployment, go to the settings tab. Under "Networking", generate a domain and set the port to be 8080.
+
+# 11. Go back to the frontend service and add an environment variable VITE_BACKEND_URL with the URL of the backend domain you generated earlier.
+
+# Now, the web application should be fully functional, and can be accessed via the public domain of the frontend service.
