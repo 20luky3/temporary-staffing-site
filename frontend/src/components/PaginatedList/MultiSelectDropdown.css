@@ -1,0 +1,33 @@
+.multi-select {
+  position: relative;
+  width: 200px;
+}
+
+.multi-select-header {
+  border: 1px solid #ccc;
+  padding: 6px;
+  cursor: pointer;
+  background: white;
+}
+
+.multi-select-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  border: 1px solid #ccc;
+  background: white;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.multi-select-option {
+  display: flex;
+  gap: 6px;
+  padding: 5px;
+}
+
+.multi-select-option:hover {
+  background: #f5f5f5;
+}

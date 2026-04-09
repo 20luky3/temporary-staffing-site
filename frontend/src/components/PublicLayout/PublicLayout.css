@@ -1,0 +1,15 @@
+.overhead {
+  background-color: #78a4e5;
+  padding: 50px;
+  font-size: 1.5em;
+  color: white;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  font-size: 18px;
+}
+
+.overhead a {
+  text-decoration: none;
+  color: inherit;
+}

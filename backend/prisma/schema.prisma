@@ -1,0 +1,188 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  role Role
+
+  email String @unique
+  password String
+
+  activated Boolean
+  createdAt DateTime @default(now())
+
+  resetToken String? @unique
+  expiresAt DateTime?
+
+  // Relations
+  regularUser RegularUser?
+  businessUser BusinessUser?
+}
+
+model RegularUser {
+  id Int @id
+  user User @relation(fields: [id], references: [id], onDelete: Cascade)
+
+  firstName String
+  lastName String
+
+  phoneNumber String @default("")
+  postalAddress String @default("")
+  birthday String @default("1970-01-01")
+
+  avatar String?
+  resume String?
+  biography String?
+
+  suspended Boolean @default(false)
+  availability Boolean @default(false)
+  lastActive DateTime
+
+  qualifications Qualification[]
+  committedJobs Job[] // jobs that this user has commited to
+
+  interests Interest[] // jobs this user is interested in, or a business has expressed interest in them
+}
+
+model BusinessUser {
+  id Int @id
+  user User @relation(fields: [id], references: [id], onDelete: Cascade)
+
+  businessName String
+  ownerName String
+
+  phoneNumber String
+  postalAddress String
+  location Json // { lat: ..., lon: ...}
+
+  avatar String?
+  biography String?
+
+  verified Boolean @default(false)
+  suspended Boolean @default(false)
+
+  jobs Job[] // jobs this business has created
+  interests Interest[] // jobs where this business is interested in a user
+}
+
+model PositionType {
+  id Int @id @default(autoincrement())
+  name String
+  description String
+  hidden Boolean @default(true)
+  numQualified Int @default(0)
+
+  qualifications Qualification[]
+  jobs Job[] // jobs associated with this position type
+}
+
+model Qualification {
+  id Int @id @default(autoincrement())
+  status QualificationStatus @default(created)
+  note String @default("")
+  document String?
+
+  updatedAt DateTime
+
+  userId Int
+  user RegularUser @relation(fields: [userId], references: [id])
+
+  positionTypeId Int
+  positionType PositionType @relation(fields: [positionTypeId], references: [id])
+}
+
+model Job {
+  id Int @id @default(autoincrement())
+  status JobStatus
+  note String?
+  updatedAt DateTime
+
+  salaryMin Int
+  salaryMax Int
+  
+  startTime DateTime
+  endTime DateTime
+
+  positionTypeId Int
+  positionType PositionType @relation(fields: [positionTypeId], references: [id])
+
+  businessId Int
+  business BusinessUser @relation(fields: [businessId], references: [id])
+
+  workerId Int?
+  worker RegularUser? @relation(fields: [workerId], references: [id])
+
+  interests Interest[]
+}
+
+model Interest {
+  id Int @id @default(autoincrement())
+
+  jobId Int
+  job Job @relation(fields: [jobId], references: [id], onDelete: Cascade)
+
+  candidateId Int
+  candidate RegularUser @relation(fields: [candidateId], references: [id])
+
+  businessId Int
+  business BusinessUser @relation(fields: [businessId], references: [id])
+
+  candidateInterest Boolean?
+  businessInterest Boolean?
+
+  negotiations Negotiation[]
+}
+
+model Negotiation {
+  id Int @id @default(autoincrement())
+
+  status NegotiationStatus @default(active)
+  createdAt DateTime
+  updatedAt DateTime
+  expiresAt DateTime
+
+  interestId Int
+  interest Interest @relation(fields: [interestId], references: [id], onDelete: Cascade)
+
+  candidateDecision Decision?
+  businessDecision Decision?
+}
+
+enum Role {
+  regular
+  business
+  admin
+}
+
+enum QualificationStatus {
+  created
+  submitted
+  approved
+  rejected
+  revised
+}
+
+enum JobStatus {
+  open
+  expired
+  filled
+  cancelled
+  completed
+}
+
+enum NegotiationStatus {
+  active
+  success
+  failed
+}
+
+enum Decision {
+  accept
+  decline
+}

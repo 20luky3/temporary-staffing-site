@@ -1,0 +1,46 @@
+#chatbox {
+  border: solid 1px black;
+}
+
+#chatbox form {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  padding: 5px;
+}
+
+#chatbox form input[type="text"] {
+  flex: 1;
+  padding: 8px;
+  margin: 10px;
+  font-size: 1rem;
+}
+
+#chatbox form button {
+  flex: 0 0 auto;        /* button keeps natural size */
+  padding: 8px 16px;
+  font-size: 1rem;
+}
+
+.messages {
+  height: 50vh;
+  overflow-y: auto;
+}
+
+.message {
+  border-radius: 4px;
+  margin: 20px;
+  padding: 20px;
+}
+
+.message.selfMessage {
+  background-color: rgb(159, 235, 248);
+}
+
+.message.otherMessage {
+  background-color: rgb(125, 142, 218);
+}
+
+.messageInfo {
+    font-size: 0.9rem;
+}

@@ -1,0 +1,38 @@
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  align-items: center;
+}
+
+fieldset {
+  border: 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px
+}
+
+.register {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 5vh;
+}
+
+.registerButtons {
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10vh 0;
+  gap: 1vh;
+  text-align: center;
+}

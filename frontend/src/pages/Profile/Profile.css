@@ -1,0 +1,77 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+
+  min-width: 300px;
+  max-width: 90%;
+}
+
+.CgProfile {
+  width: 10rem;
+  height: 10rem;
+}
+
+.avatar-container {
+  position: relative;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.avatar-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+/* show on hover */
+.avatar-container:hover .avatar-overlay {
+  opacity: 1;
+}
+
+.avatar-btn {
+  background: white;
+  border: none;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+.avatar-btn.danger {
+  background: #ff4d4f;
+  color: white;
+}

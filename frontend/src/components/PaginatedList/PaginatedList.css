@@ -1,0 +1,47 @@
+.btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.pagination-box {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding-top: 10px;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: solid 1px black;
+}
+
+.filters div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.filters div input,
+.filters div select {
+  padding: 3px;
+}
+
+.listComponent {
+  border-bottom: solid 1px black;
+  padding: 10px 0;
+}
+
+a.listComponent {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+a.listComponent:hover {
+  background-color: #dad8d8;
+  cursor: pointer;
+}
