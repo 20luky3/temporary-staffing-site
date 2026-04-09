@@ -1,7 +1,11 @@
 "use strict";
 
+import dotenv from "dotenv";
+
 const cors = require("cors");
 const express = require("express");
+
+dotenv.config();
 
 const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173";
 
