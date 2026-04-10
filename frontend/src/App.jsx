@@ -39,6 +39,9 @@ import Negotiation from "./pages/Negotiation";
 
 import PrivateRoute from "./components/PrivateRoute";
 import AdminRoute from "./components/AdminRoute";
+import BusinessRoute from "./components/BusinessRoute";
+import UserRoute from "./components/UserRoute";
+import BusinessOrUserRoute from "./components/BusinessOrUserRoute";
 import Unauthorised from "./components/Unauthorised";
 import NotFound from "./components/NotFound";
 import Layout from "./components/Layout";
@@ -73,39 +76,43 @@ const App = () => {
             <Route path="/home" element={<Home />} />
             <Route path="/unauthorized" element={<Unauthorised />} />
 
-            <Route path="/profile" element={<Profile />} />
-
             {/* User only routes */}
-            <Route path="/user/qualifications" element={<Qualifications />} />
-            <Route
-              path="/user/qualifications/create"
-              element={<CreateQualification />}
-            />
-            <Route path="/jobs" element={<Jobs />} />
-
-            <Route path="/user/my-jobs" element={<JobsCommitted />} />
-            <Route path="/user/interests" element={<Interests />} />
-            <Route path="/user/invitations" element={<Invitations />} />
+            <Route path="" element={<UserRoute />}>
+              <Route path="/user/qualifications" element={<Qualifications />} />
+              <Route
+                path="/user/qualifications/create"
+                element={<CreateQualification />}
+              />
+              <Route path="/jobs" element={<Jobs />} />
+              <Route path="/user/my-jobs" element={<JobsCommitted />} />
+              <Route path="/user/interests" element={<Interests />} />
+              <Route path="/user/invitations" element={<Invitations />} />
+            </Route>
 
             {/* Business only routes */}
-            <Route path="/business/my-jobs" element={<Jobs />} />
-            <Route path="/business/my-jobs/create" element={<CreateJob />} />
-            <Route
-              path="/business/jobs/:jobId/interested"
-              element={<JobInterestedUsers />}
-            />
-            <Route
-              path="/business/jobs/:jobId/candidates"
-              element={<Candidates />}
-            />
-            <Route
-              path="/business/jobs/:jobId/candidates/:userId"
-              element={<CandidateInfo />}
-            />
+            <Route path="" element={<BusinessRoute />}>
+              <Route path="/business/my-jobs" element={<Jobs />} />
+              <Route path="/business/my-jobs/create" element={<CreateJob />} />
+              <Route
+                path="/business/jobs/:jobId/interested"
+                element={<JobInterestedUsers />}
+              />
+              <Route
+                path="/business/jobs/:jobId/candidates"
+                element={<Candidates />}
+              />
+              <Route
+                path="/business/jobs/:jobId/candidates/:userId"
+                element={<CandidateInfo />}
+              />
+            </Route>
 
             {/* User and business route */}
-            <Route path="/jobs/:jobId" element={<JobIndex />} />
-            <Route path="/negotiation" element={<Negotiation />} />
+            <Route path="" element={<BusinessOrUserRoute />}>
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/jobs/:jobId" element={<JobIndex />} />
+              <Route path="/negotiation" element={<Negotiation />} />
+            </Route>
 
             {/* Admin only routes */}
             <Route path="/admin" element={<AdminRoute />}>

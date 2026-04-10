@@ -220,7 +220,7 @@ function JobIndex() {
   if (loading) return <h3>Loading job...</h3>;
 
   if (error !== "") {
-    return <h3>You are not allowed to view this job: {error}</h3>;
+    return <h3>You cannot view this job: {error}</h3>;
   }
 
   return (
