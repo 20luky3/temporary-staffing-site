@@ -31,11 +31,31 @@ const regularUsers = [
 ];
 
 const extraUsers = [
-  { first_name: "Jeremy", last_name: "Dooley", suspended: true, activated: false, },
-  { first_name: "Elaina", last_name: "Anderson", suspended: true, activated: true, },
-  { first_name: "Anthony", last_name: "Hudgens", suspended: true, activated: false, },
-  { first_name: "Courtney", last_name: "Miller", suspended: true, activated: false, }
-]
+  {
+    first_name: "Jeremy",
+    last_name: "Dooley",
+    suspended: true,
+    activated: false,
+  },
+  {
+    first_name: "Elaina",
+    last_name: "Anderson",
+    suspended: true,
+    activated: true,
+  },
+  {
+    first_name: "Anthony",
+    last_name: "Hudgens",
+    suspended: true,
+    activated: false,
+  },
+  {
+    first_name: "Courtney",
+    last_name: "Miller",
+    suspended: true,
+    activated: false,
+  },
+];
 
 const businessUsers = [
   {
@@ -688,54 +708,61 @@ const interests = [
     jobId: 8,
     candidateId: 2,
     businessId: 22,
-    businessInterest: true
+    businessInterest: true,
   },
   {
     jobId: 13,
     candidateId: 2,
     businessId: 22,
-    businessInterest: true
+    businessInterest: true,
   },
   {
     jobId: 15,
     candidateId: 2,
     businessId: 23,
-    businessInterest: true
+    businessInterest: true,
   },
   {
     jobId: 20,
     candidateId: 2,
     businessId: 27,
-    businessInterest: true
+    businessInterest: true,
   },
   {
     jobId: 25,
     candidateId: 2,
     businessId: 27,
-    businessInterest: true
+    businessInterest: true,
   },
 
   {
     jobId: 30,
     candidateId: 2,
     businessId: 27,
-    businessInterest: true
+    businessInterest: true,
   },
   {
     jobId: 35,
     candidateId: 2,
     businessId: 22,
-    businessInterest: true
+    businessInterest: true,
   },
   {
     jobId: 40,
     candidateId: 2,
     businessId: 27,
-    businessInterest: true
+    businessInterest: true,
   },
 ];
 
 async function main() {
+  const existing = await prisma.user.findFirst();
+
+  if (existing) {
+    console.log("Seed already ran, skipping.");
+    return;
+  }
+  
   const now = new Date();
 
   // Create admin user
@@ -814,7 +841,7 @@ async function main() {
             birthday: "2000-01-01",
             lastActive: now,
             availability: false,
-            suspended: user.suspended
+            suspended: user.suspended,
           },
         },
       },

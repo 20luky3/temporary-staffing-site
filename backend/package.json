@@ -7,7 +7,7 @@
     "start": "node src/server.js 3000",
     "seed": "node prisma/seed.js",
     "clean": "rm -rf prisma/dev.db* node_modules package-lock.json prisma/migrations/",
-    "postinstall": "prisma migrate deploy && prisma generate"
+    "postinstall": "prisma migrate deploy && prisma generate && prisma db seed"
   },
   "prisma": {
     "seed": "node prisma/seed.js"
